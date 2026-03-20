@@ -1,0 +1,18 @@
+<odoo>
+    <template id="report_saleorder_document_inherit"
+              inherit_id="sale.report_saleorder_document">
+
+        <xpath expr="//div[@id='informations']" position="after">
+            <div class="mt-3 mb-3">
+                <t t-if="doc.new_field">
+                    <strong>New Field:</strong>
+                    <span t-field="doc.new_field"/>
+                </t>
+                <t t-else="">
+                    <span style="color: red; font-weight: bold;">Поле New Field пустое!!!</span>
+                </t>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>
