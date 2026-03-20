@@ -10,7 +10,9 @@
             </xpath>
 
             <xpath expr="//field[@name='date_order']" position="after">
-                <field name="new_field"/>
+                <field name="new_field"
+                       readonly="state == 'sent'"
+                       invisible="state == 'sale'"/>
             </xpath>
 
         </field>
