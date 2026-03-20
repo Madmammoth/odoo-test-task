@@ -16,7 +16,6 @@ Long description of module's purpose
     'depends': ['sale', 'hr'],
 
     'data': [
-        # 'security/ir.model.access.csv',
         'views/sale_order_views.xml',
         'reports/sale_order_report.xml',
     ],
