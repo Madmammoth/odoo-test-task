@@ -1,20 +1,18 @@
 <odoo>
     <record id="view_order_form_inherit" model="ir.ui.view">
-        <field name="name">sale.order.form.inherit</field>
+        <field name="name">sale.order.form.inherit.artline</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="issuer_id" string="Ответственный за выдачу товара"/>
+                <field name="issuer_id" options="{'no_create': True, 'no_open': True}"/>
             </xpath>
 
-            <xpath expr="//field[@name='date_order']" position="after">
+            <xpath expr="//group[@name='order_details']" position="inside">
                 <field name="new_field"
                        readonly="state == 'sent'"
                        invisible="state == 'sale'"/>
             </xpath>
-
         </field>
     </record>
 </odoo>
