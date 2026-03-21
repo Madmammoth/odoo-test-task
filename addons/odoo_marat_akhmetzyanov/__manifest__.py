@@ -1,23 +1,13 @@
 {
-    'name': "Artline Task: Sale Customization",
-
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
-
-    'description': """
-Long description of module's purpose
-    """,
-
-    'author': "Marat",
-    'website': "https://www.yourcompany.com",
-
+    'name': 'Sale Order Customization (Artline)',
+    'version': '18.0.1.0.0',
     'category': 'Sales',
-    'version': '1.0',
-
+    'author': 'Marat Akhmetzyanov',
     'depends': ['sale', 'hr'],
-
     'data': [
         'views/sale_order_views.xml',
         'reports/sale_order_report.xml',
     ],
     'installable': True,
+    'license': 'LGPL-3',
 }
