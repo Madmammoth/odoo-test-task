@@ -23,6 +23,7 @@ class SaleOrder(models.Model):
     )
 
     last_generated_value = fields.Char(copy=False, readonly=True)
+    initial_date = fields.Datetime(copy=False, readonly=True)
     is_new_field_manual = fields.Boolean(default=False, copy=False)
 
     def default_get(self, fields_list):
@@ -31,6 +32,7 @@ class SaleOrder(models.Model):
         result.update({
             'new_field': rnd,
             'last_generated_value': rnd,
+            'initial_date': result.get('date_order'),
         })
         return result
 
@@ -46,7 +48,7 @@ class SaleOrder(models.Model):
         if self.new_field and len(self.new_field) > 30:
             return {
                 'warning': {
-                    'title': _("Ошибка в New Field"),
+                    'title': _("Предупреждение для New Field"),
                     'message': _("Длина текста должна быть меньше 30 символов!"),
                 }
             }
@@ -56,7 +58,10 @@ class SaleOrder(models.Model):
         if self.is_new_field_manual:
             return
 
-        if self.order_line:
+        has_line = bool(self.order_line)
+        date_was_changed = self.date_order != self.initial_date
+
+        if has_line or date_was_changed:
             date_str = format_datetime(self.env, self.date_order, dt_format='dd/MM/yyyy HH:mm:ss')
             new_value = f"{date_str} + {self.amount_total:.2f}"
 
